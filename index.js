@@ -16,9 +16,8 @@ sequelize
         console.log('unable to connect: ',err)
     })
 
-app.get("/",(req,res) => {
-    res.json({message:"Wlcome to sequelize application"})
-})
+const articleRouter = require('./routes/article')
+app.use('/', articleRouter)
 
 app.listen(3000,() => {
 

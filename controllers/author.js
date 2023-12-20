@@ -21,24 +21,6 @@ const getAuthorArticles = (req,res) =>{
         })
 }
 
-// const getArticleBySlug = (req,res) =>{
-//     models.Article.findOne({
-//         where:{
-//             slug: req.params.slug
-//         },
-//         include: [{
-//             model: models.Author
-//         }],
-//     })
-//         .then(article =>{
-//             console.log(article)
-//             return res.status(200).json({article})
-//         })
-//         .catch(error =>{
-//             return res.status(500).send(error.message)
-//         })
-// }
-
 module.exports = {
     getAuthorArticles,
 }

@@ -24,7 +24,45 @@ const createArticle = (req,res) =>{
             return res.status(500).send(error.message)
         })
 }
+const editArticle = (req,res) =>{
+    if (req.method === 'POST'){
+        let id = req.params.id
+        let name = req.body.name
+        let slug = req.body.slug
+        let image = req.body.image
+        let body = req.body.body
+        let author_id = req.body.author_id
+        models.Article.update({
+            name: name,
+            slug: slug,
+            image: image,
+            body: body,
+            author_id: author_id
+        }, {
+            where: {id: id}
+        })
+            .then(article =>{
+                    return res.status(200).json({message: 'Article updated'})
+            })
+            .catch(error =>{
+                return res.status(500).send(error.message)
+            })
+    } else{
+        models.Article.findByPk(req.params.id, {
+            include: [{
+                    model: models.Author
+                }],
+        })
+            .then(article =>{
+                    return res.status(200).json({article})
+            })
+            .catch(error =>{
+                return res.status(500).send(error.message)
+            })
+    }
+}
 
 module.exports = {
     createArticle,
+    editArticle
 }

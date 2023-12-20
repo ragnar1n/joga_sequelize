@@ -8,5 +8,6 @@ router.get('/', articleController.getAllArticles)
 router.get('/article/:slug', articleController.getArticleBySlug)
 router.get('/author/:id', authorController.getAuthorArticles)
 router.post('/admin/article/create', articleAdminController.createArticle)
+router.all('/admin/article/edit/:id', articleAdminController.editArticle)
 
 module.exports = router

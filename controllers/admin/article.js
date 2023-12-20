@@ -61,8 +61,22 @@ const editArticle = (req,res) =>{
             })
     }
 }
+const deleteArticle = (req,res) =>{
+    if (req.method === 'POST'){
+        models.Article.destroy({
+            where: {id: req.params.id}
+        })
+            .then((article) => {
+                return res.status(200).json({message: 'Article deleted'})
+            })
+            .catch((error) => {
+                return res.status(500).json({message: error.message})
+            })
+    }
+}
 
 module.exports = {
     createArticle,
-    editArticle
+    editArticle,
+    deleteArticle
 }

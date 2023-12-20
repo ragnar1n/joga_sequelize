@@ -9,5 +9,6 @@ router.get('/article/:slug', articleController.getArticleBySlug)
 router.get('/author/:id', authorController.getAuthorArticles)
 router.post('/admin/article/create', articleAdminController.createArticle)
 router.all('/admin/article/edit/:id', articleAdminController.editArticle)
+router.post('/admin/article/delete/:id', articleAdminController.deleteArticle)
 
 module.exports = router
